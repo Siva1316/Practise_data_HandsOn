@@ -1,0 +1,49 @@
+tables:
+  - name: hotel_click_booking_updated
+    sql: {{ load_sql('Hotel_click_Booking') }}
+    description: "This table stores key details about the customers' hotel bookings."
+    public: true
+    
+    joins:
+      - name: hotel_booking_v1
+        relationship: many_to_one
+        sql: >
+          "{TABLE.location_id} = {hotel_booking_v1.location_id}"
+
+    dimensions:
+      - name: booking_id
+        type: number
+        column: booking_id
+        description: "Unique identifier for each booking."
+        primary_key: true
+
+      - name: location_id
+        type: number
+        column: location_id
+        description: "The unique identifier for the location of the booking, used for geographic analysis."
+
+      - name: geo_id
+        type: number
+        column: geo_id
+        description: "The geographic identifier associated with the booking, used for regional segmentation and analytics."
+
+      - name: ds
+        type: string
+        column: ds
+        description: "The date of the booking, used for time-series analysis and reporting."
+
+    measures:
+      - name: total_bookings
+        sql: "COUNT(*)"
+        type: number
+        description: "The total number of bookings in the dataset."
+
+      - name: unique_locations
+        sql: "COUNT(DISTINCT {location_id})"
+        type: number
+        description: "The number of unique locations where bookings occurred."
+
+      - name: unique_geos
+        sql: "COUNT(DISTINCT {geo_id})"
+        type: number
+        description: "The number of unique geographic regions for bookings."

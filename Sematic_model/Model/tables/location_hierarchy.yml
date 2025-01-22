@@ -1,0 +1,29 @@
+tables:
+  - name: hotel_booking_updated
+    sql: {{ load_sql('Location_Hiery') }}
+    description: "This table stores key details about the customers' hotel bookings."
+    public: true
+
+    
+    dimensions:
+      - name: location_id
+        type: number
+        column: location_id
+        description: "The unique identifier for the location of the booking, used for geographic analysis."
+
+      - name: geo_id
+        type: number
+        column: geo_id
+        description: "The geographic identifier associated with the booking, used for regional segmentation and analytics."
+        primary_key: true
+        
+      - name: ds
+        type: string
+        column: ds
+        description: "The date of the booking, used for time-series analysis and reporting."
+
+    measures:
+      - name: total_bookings
+        sql: "COUNT(*)"
+        type: number
+        description: "The total number of bookings in the dataset."

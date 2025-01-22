@@ -1,0 +1,53 @@
+name: siva-loc-hierarchy-qualitycheck
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying quality checks for the customer data
+workspace: public
+workflow:
+  dag:
+    - name: soda-siva-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO # WARNING, ERROR, DEBUG
+        stackSpec:
+          inputs:
+            - dataset: dataos://lakehouse:siva/hotel_booking_v1
+              options:
+                engine: minerva
+                clusterName: miniature
+              checks:  
+                - schema:
+                    name: Data type validation for table columns
+                    fail:
+                      when wrong column type:
+                        location_id: text
+                        geo_id: text
+                        ds: date
+                    attributes:
+                      category: Schema
+
+                - missing_count(location_id) = 0:
+                    name: No missing values in location_id
+                    attributes:
+                      category: Completeness
+
+                - missing_count(geo_id) = 0:
+                    name: No missing values in geo_id
+                    attributes:
+                      category: Completeness
+                
+                - min(ds) >= '2000-01-01':
+                    name: Date values in 'ds' must be valid and after 2000-01-01
+                    attributes:
+                      category: Validity

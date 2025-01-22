@@ -1,0 +1,53 @@
+version: v1
+name: siva-dp-output-table-updated
+type: workflow
+tags:
+  - crm
+description: Ingesting data into the lakehouse
+workflow:
+  dag:
+    - name: dg-customer-data
+      description: Ingests hotel click booking data into the lakehouse and processes insights.
+      spec:
+        tags:
+          - crms
+        stack: flare:6.0
+        compute: runnable-default
+        stackSpec:
+          driver:
+            coreLimit: 2000m
+            cores: 2
+            memory: 3000m
+          executor:
+            coreLimit: 3000m
+            cores: 2
+            instances: 2
+            memory: 4000m
+
+          job:
+            explain: true
+            logLevel: INFO
+            inputs:
+              - name: hotel_click_bookings
+                dataset: dataos://lakehouse:siva/hotel_click_booking_v1?acl=rw
+                format: Iceberg
+            steps:
+              - sequence:
+                  - name: final_insights
+                    sql: >
+                      SELECT
+                        location_id,
+                        COUNT(booking_id) AS total_bookings,
+                        COUNT(DISTINCT user_id) AS unique_users
+                      FROM hotel_click_bookings
+                      GROUP BY location_id
+            outputs:
+              - name: final_insights
+                dataset: dataos://lakehouse:siva/hotel_insights?acl=rw
+                format: Iceberg
+                options:
+                  saveMode: overwrite
+                  iceberg:
+                    properties:
+                      write.format.default: parquet
+                      write.metadata.compression-codec: gzip

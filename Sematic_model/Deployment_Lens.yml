@@ -1,5 +1,5 @@
 # RESOURCE META SECTION
-name: siva-model-lens # Lens Resource name (mandatory)
+name: siva-model-lens-updated # Lens Resource name (mandatory)
 version: v1alpha # Lens manifest version (mandatory)
 layer: user # DataOS Layer (optional)
 type: lens # Type of Resource (mandatory)

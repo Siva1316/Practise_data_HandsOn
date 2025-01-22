@@ -1,5 +1,5 @@
 version: v1
-name: siva-handsondp-scan
+name: siva-handsondp-scan-updated
 type: workflow
 tags:
   - scanner
@@ -25,4 +25,4 @@ workflow:
               markDeletedDataProducts: true
               dataProductFilterPattern:
                 includes:
-                 - siva-datahandson-dp
+                 - siva-datahandson-dp-updated

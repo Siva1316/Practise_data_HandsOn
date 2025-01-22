@@ -1,4 +1,4 @@
-name: siva-datahandson-dp
+name: siva-datahandson-dp-updated
 version: v1beta
 entity: product
 type: data
@@ -17,11 +17,11 @@ v1beta:
   data:
     meta:
       title: siva hands on dp
-      sourceCodeUrl: https://github.com/Siva1316/Data_Os_Handson
+      sourceCodeUrl: https://github.com/Siva1316/Practise_Data_Os
       trackerUrl: https://rubikai.atlassian.net/browse/DPRB-65
  
     collaborators:
-      - name: siva_acies05
+      - name: Siva_Acies_05
         description: owner
     
     resource:
@@ -30,13 +30,13 @@ v1beta:
 
     inputs:
       - refType: dataos
-        ref: dataos://lakehouse:siva/hotel_booking
+        ref: dataos://lakehouse:siva/hotel_booking_v1
 
       - refType: dataos
-        ref: dataos://lakehouse:siva/hotel_click_booking
+        ref: dataos://lakehouse:siva/hotel_click_booking_v1
 
       - refType: dataos
-        ref: dataos://lakehouse:siva/vm_user_location
+        ref: dataos://lakehouse:siva/vm_user_location_v1
 
     outputs:
       - refType: dataos
@@ -44,7 +44,7 @@ v1beta:
 
     ports:
       lens:
-        ref: lens:v1alpha:siva-model-lens:public
+        ref: lens:v1alpha:siva-handson-bundle-updated:public
         refType: dataos
 
     #   talos:

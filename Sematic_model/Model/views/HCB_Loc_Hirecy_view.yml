@@ -19,7 +19,7 @@ views:
           - location_id
           - geo_id
           - ds
-      - join_path: Location_Hierarchy
+      - join_path: location_hierarchy
         prefix: true
         includes:
           - location_id

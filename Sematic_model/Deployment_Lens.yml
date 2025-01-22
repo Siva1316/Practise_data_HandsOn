@@ -23,8 +23,8 @@ lens:
     
   repo: # Lens model code repository configuration (mandatory)
     type: git # Added repository type
-    url: https://github.com/Siva1316/Data_Os_Handson # URL of repository containing the Lens model (mandatory)
-    lensBaseDir: Data_Os_Handson/Sematic_model/Model # Relative path of the Lens 'model' directory in repository (mandatory)
+    url: https://github.com/Siva1316/Practise_data_HandsOn # URL of repository containing the Lens model (mandatory)
+    lensBaseDir: Practise_data_HandsOn/Sematic_model/Model # Relative path of the Lens 'model' directory in repository (mandatory)
     syncFlags: # Additional flags used during synchronization (optional)
       - --ref=main # Repository Branch (optional)
 

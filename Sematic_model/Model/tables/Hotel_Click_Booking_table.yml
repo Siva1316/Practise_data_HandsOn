@@ -5,10 +5,10 @@ tables:
     public: true
     
     joins:
-      - name: hotel_booking_v1
+      - name: hotel_booking_updated
         relationship: many_to_one
         sql: >
-          "{TABLE.location_id} = {hotel_booking_v1.location_id}"
+          "{TABLE.location_id} = {hotel_booking_updated.location_id}"
 
     dimensions:
       - name: booking_id

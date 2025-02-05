@@ -1,12 +1,12 @@
 # RESOURCE META SECTION
-name: siva-model-lens-updated # Lens Resource name (mandatory)
+name: siva-model-lens # Lens Resource name (mandatory)
 version: v1alpha # Lens manifest version (mandatory)
 layer: user # DataOS Layer (optional)
 type: lens # Type of Resource (mandatory)
 tags: # Tags (optional)
   - lens
-  - Data Hands On
-description: This data model provides comprehensive insights for hotel booking analysis. # Lens Resource description (optional)
+  - customer credit insights
+description: This data model provides comprehensive insights for customer data related to credits. # Lens Resource description (optional)
 
 # LENS-SPECIFIC SECTION
 lens:
@@ -21,12 +21,12 @@ lens:
     name: miniature # Source name (name of the depot)
     catalog: lakehouse # Catalog name for the depot
     
-  repo: # Lens model code repository configuration (mandatory)
-    type: git # Added repository type
+  repo: # Lens model code repository configuration (mandatory) 
+    #type: git # Added repository type
     url: https://github.com/Siva1316/Practise_data_HandsOn # URL of repository containing the Lens model (mandatory)
     lensBaseDir: Practise_data_HandsOn/Sematic_model/Model # Relative path of the Lens 'model' directory in repository (mandatory)
     syncFlags: # Additional flags used during synchronization (optional)
-      - --ref=main # Repository Branch (optional)
+      - --ref=Practise_data_HandsOn # Repository Branch (optional)
 
 # API Instances configuration
   api:  #(optional)
@@ -63,16 +63,3 @@ lens:
         cpu: 1000m
         memory: 2048Mi # Fixed memory unit
 
-# Iris configuration 
-#  iris: #(optional)
-#    logLevel: info # Log level for Iris (optional)
-#    resources: # CPU and memory resource specifications for the iris board (optional)
-#      requests:
-#        cpu: 200m
-#        memory: 256Mi
-#      limits:
-#       cpu: 1600m
-#        memory: 2240Mi
-# Metric configuration 
-# metric:                         #(optional)
-#   logLevel: info # Log level for metrics (optional)

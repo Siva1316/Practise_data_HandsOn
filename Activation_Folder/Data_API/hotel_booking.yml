@@ -1,0 +1,11 @@
+urlPath: /
+description: This endpoint exposes individual hotel booking.
+source: lens
+response:
+  - name: booking_id
+  - name: booking_segments
+  - name: booking_recommendations
+cache:
+  - cacheTableName: 'cross_sell_cache'
+    sql: SELECT product_customer_id as customer_id FROM product
+    source: lens
